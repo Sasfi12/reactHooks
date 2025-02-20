@@ -2,11 +2,15 @@ import { useState } from 'react' // this is what I'm trying to understand.
 import "./LearnUseState.css"
 function LearnUseState() {
 const choices = ["Ramen" , "Tempura" , "Sushi" , "Byriani" , "Rasgullah" , "Kulfi" , "何とかの食べ物"]
-  let currentChoice = choices[Math.floor(Math.random()  * choices.length)]
-  const [currentState , stateName] = useState(currentChoice) // this 
-  function newState() { 
-    currentChoice = choices[Math.floor(Math.random()  * choices.length)]
-    stateName(currentChoice)
+
+  const [currentState , setCurrentState] = useState(choices[0]) // this 
+  
+  function newState() {
+    let currentChoice = choices[choices.indexOf(currentState) + 1 ]
+    if(currentChoice == undefined) {
+      currentChoice = choices[0]
+    }
+    setCurrentState(currentChoice)
   }
   return (
     <div className='hels'>
